@@ -55,5 +55,29 @@ public class JobPostingsController {
 		jobPostingRepository.delete(jobPosting);
 	}
 	
+	@GetMapping("/bytitle/{jobtitle}")
+	public List<JobPosting> findJobPostingsByTitle(@PathVariable("jobtitle") String jobtitle){
+		return jobPostingRepository.findByTitle(jobtitle);
+	}
+	
+	@GetMapping("/bysalary/{salary}")
+	public List<JobPosting> findJobPostingsBySalary(@PathVariable("salary") Double salary){
+		return jobPostingRepository.findBySalary(salary);
+	}
+	
+	@GetMapping("/byrange/{minsalary}/{maxsalary}")
+	public List<JobPosting> findJobPostingsBySalaryRange(@PathVariable("minsalary") Double minsalary, @PathVariable("maxsalary") Double maxsalary){
+		return jobPostingRepository.findJobPostingsBySalaryRange(minsalary, maxsalary);
+	}
+	
+	@GetMapping("/bymatch/{title}")
+	public List<JobPosting> findJobPostingsByMatch(@PathVariable("title") String title){
+		return jobPostingRepository.findJobPostingsByMatch(title);
+	}
+
+	@GetMapping("/bysalarymoethan/{salary}")
+	public List<JobPosting> findJobPostingsBySalaryMorethan(@PathVariable("salary") Double salary){
+		return jobPostingRepository.findBySalaryMorethan(salary);
+	}
 	
 }
